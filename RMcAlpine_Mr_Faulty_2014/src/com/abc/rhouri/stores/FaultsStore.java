@@ -33,8 +33,8 @@ public class FaultsStore {
 		RandomID=randomfield;
 	}
 	
-	public void setSeverity(String sev){
-		Severity=sev;
+	public void setSeverity(String severity){
+		Severity=severity;
 	}
 	
 	/* Get methods */

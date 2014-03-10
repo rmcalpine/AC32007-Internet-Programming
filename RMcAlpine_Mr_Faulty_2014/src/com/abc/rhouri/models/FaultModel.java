@@ -30,31 +30,32 @@ public class FaultModel {
 
 
 
-	public static void setFaultData(String fid, String sdes, String ldes, String randomfield, String sev) {
+	public void setFaultData(String sdes, String ldes, String randomfield, String sev) {
 
 		try {
 			envContext = new InitialContext();
 			Context initContext = (Context) envContext.lookup("java:/comp/env");
 			DataSource _ds = (DataSource) initContext
-					.lookup("jdbc/rhouri");
+					.lookup("jdbc/fault");
 			Connection conn = _ds.getConnection();
 			System.out.println("Connected to the database!");
 
 			PreparedStatement pmst = null;
 
-			String query = "INSERT INTO fault(FaultShortDescription, FaultLongDescription, RandomID, Severity) VALUES (?,?,?,?)";
+			String query = "INSERT INTO fault(sdes, ldes, randomfield, severity) VALUES (?,?,?,?)";
 			try {
 				pmst = conn.prepareStatement(query);
 				pmst.setString(1, "sdes");
 				pmst.setString(2, "ldes");
 				pmst.setString(3, "randomfield");
-				pmst.setString(4, "sev");
+				pmst.setString(4, "severity");
 				pmst.executeUpdate();
 				System.out
 						.println("The data has successfully been inserted into the database.");
 
 			} catch (Exception ex) {
-
+				ex.printStackTrace();
+				System.out.println(ex.getMessage());
 				System.out.println("The data has not been inserted into the database.");
 				return;
 			}
@@ -91,7 +92,7 @@ public LinkedList<FaultsStore> getFaults() {
 
 		PreparedStatement pmst = null;
 		Statement stmt = null;
-		String sqlQuery = "select FaultID, FaultShortDescription, FaultLongDescription, RandomID, Severity from fault";
+		String sqlQuery = "select FaultShortDescription, FaultLongDescription, RandomID, Severity from fault";
 		System.out.println("Fault Query " + sqlQuery);
 		try {
 			try {
@@ -124,7 +125,7 @@ public LinkedList<FaultsStore> getFaults() {
 				//FaultID, FaultShortDescription, FaultLongDescription, RandomID, Severity
 				
 
-				ps.setFaultID(rs.getString("FaultID"));
+				//ps.setFaultID(rs.getString("FaultID"));
 				ps.setFaultShortDescription(rs.getString("FaultShortDescription"));
 				ps.setFaultLongDescription(rs.getString("FaultLongDescription"));
 				ps.setRandomID(rs.getString("RandomID"));

@@ -23,8 +23,8 @@ import com.abc.rhouri.models.FaultModel;
  */
 @WebServlet(
 		urlPatterns = { 
-				"/Faults", 
-				"/Fault/*"
+				"/faults", 
+				"/fault/*"
 		}, 
 		initParams = { 
 				@WebInitParam(name = "data-source", value = "jdbc/fault")
@@ -80,28 +80,28 @@ public class Fault extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		// Make new FaultModel object
-				com.abc.rhouri.model.FaultModel = new com.abc.rhouri.model.FaultModel();
+				FaultModel faultModel = new FaultModel();
 
 				// Get content of description box
-				String fid = request.getParameter("txtFaultID");
+				// String fid = request.getParameter("txtFaultID");
 
 				// Get content of reportedBy box and cast as an int
-				String sdes = request.getParameter("txtFaultShortDescription");
+				String sdes = request.getParameter("shortDes");
 
 				// Get content of severity selection box
-				String ldes = request.getParameter("txtFaultLongDescription");
+				String ldes = request.getParameter("longDes");
 				
 				// Get content of severity selection box
-				String randomfield = request.getParameter("txtRandomID");
+				String randomfield = request.getParameter("randomfield");
 				
 				// Get content of severity selection box
-				String sev = request.getParameter("txtSeverity");
+				String sev = request.getParameter("sev");
 
 				// Shows message in console
 				System.out.println("DoPost works correctly!");
 
 				// Calls method to insert into Database
-				FaultModel.setFaultData(fid, sdes, ldes, randomfield, sev);
+				faultModel.setFaultData(sdes, ldes, randomfield, sev);
 
 				// Redirects the user.
 				//RequestDispatcher dispatcher = request

@@ -46,9 +46,6 @@ public class LoginServlet extends HttpServlet {
 		// if(isUserValid)
 		//request.getSession().setAttribute("isUserLoggedIn", true);
 		response.sendRedirect(request.getContextPath() + "/reporter.jsp");
-		
-		// else
-		// redirect to fuckoff
 	}
 
 }

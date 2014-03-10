@@ -173,7 +173,7 @@ public class Dbutils {
 	}
 
 	public void createSchema(){
-		String url = "jdbc:mysql://localhost";
+		String url = "jdbc:mysql://localhost:3306/fault";
 		Connection conn=null;
 		try {
 		   Class.forName ("com.mysql.jdbc.Driver").newInstance ();

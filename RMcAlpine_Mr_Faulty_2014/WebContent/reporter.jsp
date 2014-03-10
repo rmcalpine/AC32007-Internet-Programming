@@ -86,33 +86,31 @@ function generateID() {
 		var rnum = Math.floor(Math.random() * chars.length);
 		randomstring += chars.substring(rnum,rnum+1);
 	}
-	document.randform.randomfield.value = randomstring;
+	document.faultLog.randomfield.value = randomstring;
 }
 </script>
 
-<form action="/RMcAlpine_Mr_Faulty_2014/fault" method="POST" name="randform">
+
+<form action="/RMcAlpine_Mr_Faulty_2014/fault" method="POST"  name="faultLog">
 <input type="button" value="Generate my Fault ID" onClick="generateID(); this.disabled=true;">
 <p>
 <input type="text" name="randomfield" value="">
-</form>
-
-
-<form action="/RMcAlpine_Mr_Faulty_2014/fault" method="POST"  name="faultLog">
+<p>
 Short Description<input type="text" name="shortDes"/>
 <p>
 Long Description<input type="text" name="longDes"/>
 <p>
 What is the severity of your problem?:
 <p>
-<input type="radio" name="flt" value="4">Severe Fault
+<input type="radio" name="severity" value="4">Severe Fault
 <p>
-<input type="radio" name="flt" value="3">Major Fault
+<input type="radio" name="severity" value="3">Major Fault
 <p>
-<input type="radio" name="flt" value="2">Minor Fault
+<input type="radio" name="severity" value="2">Minor Fault
 <p>
-<input type="radio" name="flt" value="1" checked>Slight Fault
+<input type="radio" name="severity" value="1" checked>Slight Fault
 <p>
-<input type="button" onclick="submitForm();" value="Submit!"/>
+<input type="submit"  value="Submit"/>
 <input type="reset" value="Cancel"/>
 </form>
 
